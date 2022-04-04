@@ -5,8 +5,8 @@ const MainInput = ({ ...props }) => {
   return (
     <Input
       sx={{
-        mb: 2,
-        padding: "10px",
+        mb: 1,
+        padding: "6px 12px",
         width: "100%",
         background: "#fafafa",
         borderRadius: "5px",

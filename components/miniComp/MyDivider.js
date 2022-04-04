@@ -6,7 +6,7 @@ const MyDivider = ({ title }) => {
     <Box
       sx={{
         width: "100%",
-        py: 2,
+        pb: 3,
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
