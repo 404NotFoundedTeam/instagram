@@ -46,6 +46,7 @@ export default function BottomNav({ icons, sx }) {
             color: (theme) => theme.palette.text.primary,
             fontSize: "24px !important",
             padding: "8px 10px",
+            "&.Mui-selected": { color: (theme) => theme.palette.text.primary },
           }}
         />
       ))}
