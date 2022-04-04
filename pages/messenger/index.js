@@ -10,8 +10,6 @@ const Chat = () => {
   const users = useSelector((state) => state.users.followers);
 
   return (
-    <>
-      <Header />
       <Box sx={{ width: "100%", padding: { xs: 0, md: 3 } }}>
         <Paper
           sx={{
@@ -72,7 +70,6 @@ const Chat = () => {
           </Box>
         </Paper>
       </Box>
-    </>
   );
 };
 
