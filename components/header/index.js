@@ -1,23 +1,10 @@
 import { Box, Grid, InputAdornment, Stack, TextField } from "@mui/material";
 import Image from "next/image";
 import SearchIcon from "@mui/icons-material/Search";
-import { AiFillHome, AiOutlineHome } from "react-icons/ai";
-import { RiMessengerFill, RiMessengerLine } from "react-icons/ri";
-import { HiPlusCircle, HiOutlinePlusCircle } from "react-icons/hi";
-import { AiFillCompass, AiOutlineCompass } from "react-icons/ai";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import React from "react";
 import Link from "next/link";
 
-export let icons = [
-  [<AiOutlineHome />, "Home", "/"],
-  [<RiMessengerLine />, "Messenger", "/messenger"],
-  [<HiOutlinePlusCircle />, "Create Post", "/create-post"],
-  [<AiOutlineCompass />, "Explore", "/explore"],
-  [<AiOutlineHeart />, "Likes", "/likes"],
-];
-
-export default function Header() {
+export default function Header({ icons }) {
   const styles = {
     header: {
       maxWidth: "991px",

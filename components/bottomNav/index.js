@@ -5,9 +5,9 @@ import FolderIcon from "@mui/icons-material/Folder";
 import RestoreIcon from "@mui/icons-material/Restore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { icons } from "../header";
 import { useRouter } from "next/router";
-export default function BottomNav() {
+
+export default function BottomNav({ icons, sx }) {
   const [value, setValue] = React.useState("recents");
   const router = useRouter();
 
@@ -24,6 +24,7 @@ export default function BottomNav() {
       width: "100%",
       background: (theme) => theme.palette.background.paper,
       boxShadow: (theme) => theme.customShadows.bottomNav,
+      ...sx,
     },
   };
 
@@ -35,6 +36,7 @@ export default function BottomNav() {
     >
       {icons.map(([icon, text, href]) => (
         <BottomNavigationAction
+          disableRipple
           key={text}
           // label={text}
           value={href}
