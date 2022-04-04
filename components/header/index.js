@@ -9,6 +9,14 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import React from "react";
 import Link from "next/link";
 
+export let icons = [
+  [<AiOutlineHome />, "Home", "/"],
+  [<RiMessengerLine />, "Messenger", "/messenger"],
+  [<HiOutlinePlusCircle />, "Create Post", "/create-post"],
+  [<AiOutlineCompass />, "Explore", "/explore"],
+  [<AiOutlineHeart />, "Likes", "/likes"],
+];
+
 export default function Header() {
   const styles = {
     header: {
@@ -42,14 +50,6 @@ export default function Header() {
       "& a": { display: "flex", alignItems: "center" },
     },
   };
-
-  const icons = [
-    [<AiOutlineHome />, "Home", "/"],
-    [<RiMessengerLine />, "Messenger", "/messenger"],
-    [<HiOutlinePlusCircle />, "Create Post", "/create-post"],
-    [<AiOutlineCompass />, "Explore", "/explore"],
-    [<AiOutlineHeart />, "Likes", "/likes"],
-  ];
 
   return (
     <Box

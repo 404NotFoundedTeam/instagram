@@ -5,36 +5,48 @@ import FolderIcon from "@mui/icons-material/Folder";
 import RestoreIcon from "@mui/icons-material/Restore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-
+import { icons } from "../header";
+import { useRouter } from "next/router";
 export default function BottomNav() {
   const [value, setValue] = React.useState("recents");
+  const router = useRouter();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    router.push(`/${newValue}`);
+  };
+
+  const styles = {
+    main: {
+      position: "fixed",
+      left: 0,
+      bottom: 0,
+      width: "100%",
+      background: (theme) => theme.palette.background.paper,
+      boxShadow: (theme) => theme.customShadows.bottomNav,
+    },
   };
 
   return (
-    <BottomNavigation sx={{ width: 500 }} value={value} onChange={handleChange}>
-      <BottomNavigationAction
-        label="Recents"
-        value="recents"
-        icon={<RestoreIcon />}
-      />
-      <BottomNavigationAction
-        label="Favorites"
-        value="favorites"
-        icon={<FavoriteIcon />}
-      />
-      <BottomNavigationAction
-        label="Nearby"
-        value="nearby"
-        icon={<LocationOnIcon />}
-      />
-      <BottomNavigationAction
-        label="Folder"
-        value="folder"
-        icon={<FolderIcon />}
-      />
+    <BottomNavigation
+      sx={{ ...styles.main }}
+      value={value}
+      onChange={handleChange}
+    >
+      {icons.map(([icon, text, href]) => (
+        <BottomNavigationAction
+          key={text}
+          // label={text}
+          value={href}
+          icon={icon}
+          sx={{
+            minWidth: "unset",
+            color: (theme) => theme.palette.text.primary,
+            fontSize: "24px !important",
+            padding: "8px 10px",
+          }}
+        />
+      ))}
     </BottomNavigation>
   );
 }
