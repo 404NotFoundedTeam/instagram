@@ -13,7 +13,7 @@ export default function Header() {
   const styles = {
     header: {
       maxWidth: "991px",
-      padding: "8px 0",
+      padding: "8px 10px",
       margin: "0 auto",
     },
     searchBox: {
@@ -63,12 +63,16 @@ export default function Header() {
         container
         alignContent="center"
         alignItems="center"
-        justifyContent="space-around"
+        justifyContent="space-between"
         sx={{ ...styles.header }}
         gap={1}
       >
         <Grid item xs={4} sm={3} sx={{ ...styles.logoCover }}>
-          <img style={{ maxWidth: "100%" }} src="/images/logo.png" alt="logo" />
+          <img
+            style={{ maxWidth: "100%", minWidth: "100px" }}
+            src="/images/logo.png"
+            alt="logo"
+          />
         </Grid>
         <Grid item xs={4} sx={{ display: { xs: "none", sm: "block" } }}>
           <Stack
@@ -97,9 +101,19 @@ export default function Header() {
             gap={2}
           >
             {icons.map(([icon, text, href]) => (
-              <Link href={href} key={text}>
-                <a>{icon}</a>
-              </Link>
+              <Box
+                key={text}
+                sx={{
+                  display: {
+                    xs: text == "Messenger" ? "block" : "none",
+                    sm: "block",
+                  },
+                }}
+              >
+                <Link href={href}>
+                  <a>{icon}</a>
+                </Link>
+              </Box>
             ))}
           </Stack>
         </Grid>
