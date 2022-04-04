@@ -25,6 +25,10 @@ const customTheme = (mode) => {
     },
     customShadows: {
       header: "rgba(17, 17, 26, 0.1) 0px 1px 0px",
+      card: "0px 0px 0 1px rgba(17, 17, 26, 0.1)",
+    },
+    customBorders: {
+      input: "0.5px solid rgba(0, 0, 0, 0.1);",
     },
   });
 };
