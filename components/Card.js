@@ -6,7 +6,9 @@ const Card = ({ children, sx }) => {
     <Paper
       elevation={1}
       sx={{
+        width: "100%",
         padding: 3,
+        boxShadow: (theme) => theme.customShadows.card,
         ...sx,
       }}
     >
