@@ -1,11 +1,4 @@
-import {
-  Box,
-  Grid,
-  InputAdornment,
-  Link,
-  Stack,
-  TextField,
-} from "@mui/material";
+import { Box, Grid, InputAdornment, Stack, TextField } from "@mui/material";
 import Image from "next/image";
 import SearchIcon from "@mui/icons-material/Search";
 import { AiFillHome, AiOutlineHome } from "react-icons/ai";
@@ -14,6 +7,7 @@ import { HiPlusCircle, HiOutlinePlusCircle } from "react-icons/hi";
 import { AiFillCompass, AiOutlineCompass } from "react-icons/ai";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import React from "react";
+import Link from "next/link";
 
 export default function Header() {
   const styles = {
