@@ -1,11 +1,4 @@
-import {
-  Box,
-  Grid,
-  InputAdornment,
-  Link,
-  Stack,
-  TextField,
-} from "@mui/material";
+import { Box, Grid, InputAdornment, Stack, TextField } from "@mui/material";
 import Image from "next/image";
 import SearchIcon from "@mui/icons-material/Search";
 import { AiFillHome, AiOutlineHome } from "react-icons/ai";
@@ -14,10 +7,15 @@ import { HiPlusCircle, HiOutlinePlusCircle } from "react-icons/hi";
 import { AiFillCompass, AiOutlineCompass } from "react-icons/ai";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import React from "react";
+import Link from "next/link";
 
 export default function Header() {
   const styles = {
-    header: { maxWidth: "991px", padding: "8px 0", margin: "0 auto" },
+    header: {
+      maxWidth: "991px",
+      padding: "8px 0",
+      margin: "0 auto",
+    },
     searchBox: {
       padding: "0 2px",
       width: "180px",
@@ -27,6 +25,7 @@ export default function Header() {
       backgroundColor: "#efefef",
       margin: "0 auto",
     },
+    logoCover: { display: "flex", alignItems: "center" },
     searchInput: {
       background: "transparent",
       border: "none",
@@ -58,7 +57,6 @@ export default function Header() {
       sx={{
         background: (theme) => theme.palette.background.paper,
         boxShadow: (theme) => theme.customShadows.header,
-        display: { xs: "none", sm: "grid" },
       }}
     >
       <Grid
@@ -69,7 +67,7 @@ export default function Header() {
         sx={{ ...styles.header }}
         gap={1}
       >
-        <Grid item xs={4} sm={3} alignContent="center">
+        <Grid item xs={4} sm={3} sx={{ ...styles.logoCover }}>
           <img style={{ maxWidth: "100%" }} src="/images/logo.png" alt="logo" />
         </Grid>
         <Grid item xs={4} sx={{ display: { xs: "none", sm: "block" } }}>
