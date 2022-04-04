@@ -15,6 +15,9 @@ const customTheme = (mode) => {
             background: {
               default: "#fafafa",
             },
+            text: {
+              primary: "#262626",
+            },
           }
         : {
             // palette values for dark mode
