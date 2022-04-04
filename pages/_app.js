@@ -4,14 +4,17 @@ import { store } from "../redux/store";
 import MainThemeProvider from "../theme";
 import MyHead from "../containers/MyHead";
 import { CssBaseline } from "@mui/material";
+import Layout from "../components/layout";
 
 function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <MainThemeProvider>
-        <CssBaseline />
-        <MyHead />
-        <Component {...pageProps} />
+        <Layout>
+          <CssBaseline />
+          <MyHead />
+          <Component {...pageProps} />
+        </Layout>
       </MainThemeProvider>
     </Provider>
   );
