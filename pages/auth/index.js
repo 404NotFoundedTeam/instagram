@@ -21,10 +21,18 @@ const SignIn = () => {
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
+        py: 8,
         alignItems: "center",
       }}
     >
       <Card>
+        <Box sx={{ width: "50%", mx: "auto" }}>
+          <img
+            style={{ width: "100%" }}
+            src="/images/text_dark.svg.png"
+            alt="instagram"
+          />
+        </Box>
         <form onSubmit={handleSubmit(submit)}>
           <Box sx={{ width: "100%" }}>
             <MainInput
