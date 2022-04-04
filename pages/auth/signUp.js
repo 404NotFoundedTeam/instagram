@@ -8,7 +8,7 @@ import MyDivider from "../../components/miniComp/MyDivider";
 import ButtonPrimary from "../../components/miniComp/ButtonPrimary";
 import FacebookLink from "../../components/miniComp/FacebookLink";
 
-const SignIn = () => {
+const SignUp = () => {
   const {
     register,
     handleSubmit,
@@ -31,13 +31,28 @@ const SignIn = () => {
     >
       <Box sx={{ width: "100%", maxWidth: "450px", padding: 2 }}>
         <Card sx={{ mb: 3 }}>
-          <Box sx={{ width: "60%", pb: 3, mx: "auto" }}>
+          <Box sx={{ width: "60%", mx: "auto" }}>
             <img
               style={{ width: "100%" }}
               src="/images/text_dark.svg.png"
               alt="instagram"
             />
           </Box>
+          <Typography
+            sx={{
+              fontWeight: "sami-bold",
+              color: "#8E8E92",
+              fontSize: "20px",
+              textAlign: "center",
+              pb: 3,
+            }}
+          >
+            Register to see photos and videos of your friends.
+          </Typography>
+          <FacebookLink contained={true} />
+          <MyDivider
+            title={<Typography sx={{ fontSize: "18px" }}>OR</Typography>}
+          />
           <Box sx={{ width: "100%" }}>
             <form
               onSubmit={(e) => {
@@ -46,26 +61,31 @@ const SignIn = () => {
               }}
             >
               <MainInput
-                placeholder="Phone, Username, or Email"
+                placeholder="Phone or Email"
                 {...register("login", { required: true })}
+              />
+              <MainInput
+                placeholder="Name and Surname"
+                {...register("login", { required: true })}
+              />
+              <MainInput
+                placeholder="User Name"
+                {...register("username", { required: true })}
               />
               <MainInput
                 placeholder="Password"
                 {...register("password", { required: true })}
               />
-              <ButtonPrimary type={"submit"}>Sign In</ButtonPrimary>
+              <ButtonPrimary type={"submit"}>Sign Up</ButtonPrimary>
             </form>
           </Box>
           <Box>
-            <MyDivider
-              title={<Typography sx={{ fontSize: "18px" }}>OR</Typography>}
-            />
-            <FacebookLink />
             <a href="#">
               <Typography
                 sx={{ fontSize: "14px", color: "#909090", textAlign: "center" }}
               >
-                Forgot Password?
+                By registering, you agree to our Terms, Data Use Policy and
+                Cookie Policy.
               </Typography>
             </a>
           </Box>
@@ -79,9 +99,11 @@ const SignIn = () => {
               justifyContent: "center",
             }}
           >
-            You have not accaunt?
-            <Link href={"/auth/signUp"}>
-              <span style={{ color: "#0779E9", cursor: 'pointer' }}>Sign Up</span>
+            Have account?
+            <Link href={"/auth"}>
+              <span style={{ color: "#0779E9", cursor: "pointer" }}>
+                Sign In
+              </span>
             </Link>
           </Box>
         </Card>
@@ -90,4 +112,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
