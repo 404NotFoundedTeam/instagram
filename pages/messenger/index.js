@@ -10,66 +10,67 @@ const Chat = () => {
   const users = useSelector((state) => state.users.followers);
 
   return (
-      <Box sx={{ width: "100%", padding: { xs: 0, md: 3 } }}>
-        <Paper
+    <Box sx={{ width: "100%", height: "100%", padding: { xs: 0, md: 3 } }}>
+      <Paper
+        sx={{
+          borderRadius: { xs: 0, md: 1 },
+          boxShadow: (theme) => theme.customShadows.card,
+          haight: "100px",
+          overflow: "hidden",
+          width: "100%",
+          maxWidth: "991px",
+          mx: "auto",
+        }}
+      >
+        <Box
           sx={{
-            borderRadius: { xs: 0, md: 1 },
-            boxShadow: (theme) => ({ md: theme.customShadows.card, xs: 0 }),
-            haight: "100%",
-            width: "100%",
-            maxWidth: "991px",
-            mx: "auto",
+            height: "500px",
+            width: "300px",
+            display: "flex",
+            flexDirection: "column",
+
+            borderRight: (theme) => theme.customBorders.input,
           }}
         >
           <Box
             sx={{
-              height: "500px",
-              width: "300px",
-              display: 'flex',
-              flexDirection: 'column',
-
-              borderRight: (theme) => theme.customBorders.input,
+              width: "100%",
+              borderBottom: (theme) => theme.customBorders.input,
+              display: "flex",
+              padding: "10px",
+              justifyContent: "center",
             }}
           >
-            <Box
-              sx={{
-                width: "100%",
-                borderBottom: (theme) => theme.customBorders.input,
-                display: "flex",
-                padding: "10px",
-                justifyContent: "center",
-              }}
-            >
-              Aliwerdev
-            </Box>
-            <Box sx={{ width: "100%", overflow: "auto", flex: 1, p: 1 }}>
-              {users.map((user) => (
-                <Box
-                  key={user.id}
-                  sx={{
-                    display: "flex",
-                    padding: "10px",
-                    alignItems: "center",
-                    gap: "5px",
-                    width: "100%",
-                  }}
-                >
-                  <img
-                    src={user.profile_pic || ""}
-                    alt=""
-                    style={{
-                      width: "50px",
-                      height: "5cd0px",
-                      borderRadius: "50%",
-                    }}
-                  />
-                  <Typography>{user.firstname}</Typography>
-                </Box>
-              ))}
-            </Box>
+            Aliwerdev
           </Box>
-        </Paper>
-      </Box>
+          <Box sx={{ width: "100%", overflow: "auto", flex: 1, p: 1 }}>
+            {users.map((user) => (
+              <Box
+                key={user.id}
+                sx={{
+                  display: "flex",
+                  padding: "10px",
+                  alignItems: "center",
+                  gap: "5px",
+                  width: "100%",
+                }}
+              >
+                <img
+                  src={user.profile_pic || ""}
+                  alt=""
+                  style={{
+                    width: "50px",
+                    height: "50px",
+                    borderRadius: "50%",
+                  }}
+                />
+                <Typography>{user.firstname}</Typography>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+      </Paper>
+    </Box>
   );
 };
 
