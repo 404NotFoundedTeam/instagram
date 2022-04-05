@@ -1,12 +1,13 @@
-import { Box, Paper, Typography } from "@mui/material";
+import { Box, IconButton, Paper, Typography } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
 import Header from "../../components/header";
+import { RiErrorWarningLine } from "react-icons/ri";
 
 const Chat = () => {
   const [messages, setMessages] = React.useState([]);
   const [message, setMessage] = React.useState("");
-  const [user, setUser] = React.useState("");
+  const [user, setUser] = React.useState({});
   const users = useSelector((state) => state.users.followers);
 
   return (
@@ -19,6 +20,7 @@ const Chat = () => {
           overflow: "hidden",
           width: "100%",
           maxWidth: "991px",
+          display: "flex",
           mx: "auto",
         }}
       >
@@ -28,13 +30,14 @@ const Chat = () => {
             width: "300px",
             display: "flex",
             flexDirection: "column",
-
             borderRight: (theme) => theme.customBorders.input,
           }}
         >
           <Box
             sx={{
               width: "100%",
+              height: "70px",
+              alignItems: "center",
               borderBottom: (theme) => theme.customBorders.input,
               display: "flex",
               padding: "10px",
@@ -43,11 +46,16 @@ const Chat = () => {
           >
             Aliwerdev
           </Box>
-          <Box sx={{ width: "100%", overflow: "auto", flex: 1, p: 1 }}>
+          <Box sx={{ width: "100%", overflow: "auto", flex: 1 }}>
             {users.map((user) => (
               <Box
                 key={user.id}
+                onClick={() => setUser(user)}
                 sx={{
+                  cursor: "pointer",
+                  "&:hover": {
+                    backgroundColor: "rgba(0,0,0,0.1)",
+                  },
                   display: "flex",
                   padding: "10px",
                   alignItems: "center",
@@ -57,7 +65,7 @@ const Chat = () => {
               >
                 <img
                   src={user.profile_pic || ""}
-                  alt=""
+                  alt={user.firstname}
                   style={{
                     width: "50px",
                     height: "50px",
@@ -69,6 +77,61 @@ const Chat = () => {
             ))}
           </Box>
         </Box>
+
+        {user.id && (
+          <Box sx={{ flex: 1 }}>
+            <Box
+              sx={{
+                width: "100%",
+                height: "70px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                px: 2,
+                borderBottom: (theme) => theme.customBorders.input,
+              }}
+            >
+              <Box sx={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                <img
+                  src={user.profile_pic || ""}
+                  alt={"fsadfasd"}
+                  style={{ width: "30px", height: "30px", borderRadius: "50%" }}
+                />
+                <Typography>{user.firstname + " " + user.lastname}</Typography>
+              </Box>
+              <IconButton>
+                <RiErrorWarningLine />
+              </IconButton>
+            </Box>
+          </Box>
+        )}
+
+        {!user.id && (
+          <Box
+            sx={{
+              flex: 1,
+              pt: 10,
+              height: "100%",
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+              height: "100% !important",
+              alignItems: "center",
+              textAlign: "center",
+            }}
+          >
+            <img
+              style={{ width: "100px", height: "100px", marginBottom: "20px" }}
+              src="http://cdn.onlinewebfonts.com/svg/img_550762.png"
+            />
+            <Typography sx={{ fontSize: "32px", fontWeight: "300" }}>
+              Your Messages
+            </Typography>
+            <Typography sx={{ fontSize: "14px", fontWeight: "300" }}>
+              Send private photos and messages to a friend or group.
+            </Typography>
+          </Box>
+        )}
       </Paper>
     </Box>
   );
