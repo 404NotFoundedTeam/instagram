@@ -40,32 +40,32 @@ export default function Header() {
   const styles = {
     header: {
       maxWidth: "991px",
-      padding: "8px 10px",
+      padding: "12px",
       margin: "0 auto",
     },
     searchBox: {
       padding: "0 2px",
-      width: "180px",
+      width: "220px",
       borderRadius: "5px",
       border: "none",
       outline: "none",
       backgroundColor: "#efefef",
       margin: "0 auto",
     },
-    logoCover: { display: "flex", alignItems: "center" },
+    logoCover: { "& a": { display: "flex", alignItems: "center" } },
     searchInput: {
       background: "transparent",
       border: "none",
       width: "100%",
       outline: "none",
-      padding: "6px 8px",
+      padding: "8px 8px",
     },
     searchIcon: {
       color: "gray",
       width: "20px",
     },
     iconStack: {
-      fontSize: { xs: "22px", sm: "24px" },
+      fontSize: { xs: "22px", sm: "26px" },
       "& a": { display: "flex", alignItems: "center" },
     },
   };
@@ -87,11 +87,15 @@ export default function Header() {
         gap={1}
       >
         <Grid item xs={4} sm={3} sx={{ ...styles.logoCover }}>
-          <img
-            style={{ maxWidth: "100%", minWidth: "100px" }}
-            src="/images/logo.png"
-            alt="logo"
-          />
+          <Link href="/">
+            <a>
+              <img
+                style={{ maxWidth: "100%", minWidth: "100px" }}
+                src="/images/logo.png"
+                alt="logo"
+              />
+            </a>
+          </Link>
         </Grid>
         <Grid item xs={4} sx={{ display: { xs: "none", sm: "block" } }}>
           <Stack
