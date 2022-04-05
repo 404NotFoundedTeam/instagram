@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef } from "react";
 
-const PlayerMini = ({ link, isBig, data }) => {
+const PlayerMini = ({ link, isBig }) => {
   const router = useRouter();
   console.log(router);
   const video = useRef(null);
@@ -40,7 +40,6 @@ const PlayerMini = ({ link, isBig, data }) => {
       <Box
         onMouseEnter={(isBig && play) || null}
         onMouseLeave={(isBig && pause) || null}
-        onClick={() => router.push("/explore/" + data.id)}
         sx={{
           "div:hover > &": {
             opacity: 1,

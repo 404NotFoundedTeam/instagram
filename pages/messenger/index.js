@@ -8,12 +8,10 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
-import Header from "../../components/header";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { BsEmojiSmile, BsArrowLeft } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import { FiImage } from "react-icons/fi";
-import Link from "next/link";
 
 const Chat = () => {
   const [messages, setMessages] = React.useState([]);
