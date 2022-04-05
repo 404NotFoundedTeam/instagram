@@ -5,6 +5,9 @@ import MainThemeProvider from "../theme";
 import MyHead from "../containers/MyHead";
 import { CssBaseline } from "@mui/material";
 import Layout from "../components/layout";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "swiper/css/bundle";
 
 function MyApp({ Component, pageProps }) {
   return (

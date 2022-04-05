@@ -1,15 +1,35 @@
 import * as React from "react";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import FolderIcon from "@mui/icons-material/Folder";
-import RestoreIcon from "@mui/icons-material/Restore";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { AiFillHome, AiOutlineHome } from "react-icons/ai";
+import { HiPlusCircle, HiOutlinePlusCircle } from "react-icons/hi";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { RiSearchLine, RiSearchFill } from "react-icons/ri";
 import { useRouter } from "next/router";
 
-export default function BottomNav({ icons, sx }) {
-  const [value, setValue] = React.useState("recents");
+export default function BottomNav({ sx }) {
+  const [value, setValue] = React.useState("/");
   const router = useRouter();
+  let icons = [
+    [<AiOutlineHome />, "Home", "/"],
+    [<RiSearchLine />, "Search", "/search"],
+    [<HiOutlinePlusCircle />, "Create Post", "/create-post"],
+    [<AiOutlineHeart />, "Likes", "/likes"],
+  ];
+  icons.forEach(([icon, text, path], i, arr) => {
+    if (router.pathname.startsWith(path) && router.pathname === "/") {
+      arr[i][0] = <AiFillHome />;
+    }
+    if (router.pathname.startsWith(path) && text === "Search") {
+      arr[i][0] = <RiSearchFill />;
+    }
+    if (router.pathname.startsWith(path) && text === "Create Post") {
+      arr[i][0] = <HiPlusCircle />;
+    }
+    if (router.pathname.startsWith(path) && text === "Likes") {
+      arr[i][0] = <AiFillHeart />;
+    }
+  });
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -50,6 +70,19 @@ export default function BottomNav({ icons, sx }) {
           }}
         />
       ))}
+      <BottomNavigationAction
+        disableRipple
+        // label={text}
+        value={"/account"}
+        icon={<img src="images/oval.png" alt="account" />}
+        sx={{
+          minWidth: "unset",
+          color: (theme) => theme.palette.text.primary,
+          fontSize: "24px !important",
+          padding: "8px 10px",
+          "&.Mui-selected": { color: (theme) => theme.palette.text.primary },
+        }}
+      />
     </BottomNavigation>
   );
 }

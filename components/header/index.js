@@ -1,10 +1,42 @@
 import { Box, Grid, InputAdornment, Stack, TextField } from "@mui/material";
+import { AiFillHome, AiOutlineHome } from "react-icons/ai";
+import { RiMessengerFill, RiMessengerLine } from "react-icons/ri";
+import { HiPlusCircle, HiOutlinePlusCircle } from "react-icons/hi";
+import { AiFillCompass, AiOutlineCompass } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import Image from "next/image";
 import SearchIcon from "@mui/icons-material/Search";
 import React from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
-export default function Header({ icons }) {
+export default function Header() {
+  const router = useRouter();
+
+  let icons = [
+    [<AiOutlineHome />, "Home", "/"],
+    [<RiMessengerLine />, "Messenger", "/messenger"],
+    [<HiOutlinePlusCircle />, "Create Post", "/create-post"],
+    [<AiOutlineCompass />, "Explore", "/explore"],
+    [<AiOutlineHeart />, "Likes", "/likes"],
+  ];
+  icons.forEach(([icon, text, path], i, arr) => {
+    if (router.pathname.startsWith(path) && router.pathname === "/") {
+      arr[i][0] = <AiFillHome />;
+    }
+    if (router.pathname.startsWith(path) && text === "Create Post") {
+      arr[i][0] = <HiPlusCircle />;
+    }
+    if (router.pathname.startsWith(path) && text === "Messenger") {
+      arr[i][0] = <RiMessengerFill />;
+    }
+    if (router.pathname.startsWith(path) && text === "Explore") {
+      arr[i][0] = <AiFillCompass />;
+    }
+    if (router.pathname.startsWith(path) && text === "Likes") {
+      arr[i][0] = <AiFillHeart />;
+    }
+  });
   const styles = {
     header: {
       maxWidth: "991px",
@@ -68,7 +100,7 @@ export default function Header({ icons }) {
             sx={{ ...styles.searchBox }}
             gap={1}
           >
-            <label for="search-input"></label>
+            <label htmlFor="search-input"></label>
             <SearchIcon sx={{ ...styles.searchIcon }} />
 
             <input
@@ -102,6 +134,18 @@ export default function Header({ icons }) {
                 </Link>
               </Box>
             ))}
+            <Box
+              sx={{
+                display: {
+                  xs: "none",
+                  sm: "block",
+                },
+              }}
+            >
+              <a>
+                <img src="images/oval.png" alt="account" />
+              </a>
+            </Box>
           </Stack>
         </Grid>
       </Grid>
