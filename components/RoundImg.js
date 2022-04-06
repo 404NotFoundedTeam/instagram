@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import React from "react";
 
 export default function RoundImg({
-  size = 57,
+  size = 60,
   userName = "John",
   src,
   borderColor,
@@ -53,7 +53,11 @@ export default function RoundImg({
     <>
       <Box
         onClick={() => console.log("user")}
-        sx={{ ...styles.main, ...(isBorder ? {} : { background: "none" }) }}
+        sx={{
+          cursor: "pointer",
+          ...styles.main,
+          ...(isBorder ? {} : { background: "none" }),
+        }}
       >
         <Box sx={{ ...styles.secondary }}>
           <img

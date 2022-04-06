@@ -40,7 +40,6 @@ export default function MyModal({ children, open, setOpen }) {
         <Zoom in={open}>
           <Box
             sx={{
-              background: "#fff",
             }}
           >
             {children}

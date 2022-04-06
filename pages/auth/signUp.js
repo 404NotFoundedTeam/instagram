@@ -3,10 +3,19 @@ import React from "react";
 import Link from "next/link";
 import Card from "../../components/Card";
 import { useForm } from "react-hook-form";
-import MainInput from "../../components/miniComp/MainInput";
 import MyDivider from "../../components/miniComp/MyDivider";
 import ButtonPrimary from "../../components/miniComp/ButtonPrimary";
 import FacebookLink from "../../components/miniComp/FacebookLink";
+import { signUpAction } from "../../redux/actions/auth";
+
+export const inputStyle = {
+  mb: 1,
+  padding: "6px 12px",
+  width: "100%",
+  background: "#fafafa",
+  borderRadius: "5px",
+  border: (theme) => theme.customBorders.input,
+};
 
 const SignUp = () => {
   const {
@@ -15,8 +24,9 @@ const SignUp = () => {
     watch,
     formState: { errors },
   } = useForm();
+
   const submit = (data) => {
-    console.log(data);
+    signUpAction(data);
   };
 
   return (
@@ -54,29 +64,33 @@ const SignUp = () => {
             title={<Typography sx={{ fontSize: "18px" }}>OR</Typography>}
           />
           <Box sx={{ width: "100%" }}>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleSubmit(submit);
-              }}
-            >
-              <MainInput
-                placeholder="Phone or Email"
-                {...register("login", { required: true })}
+            <form onSubmit={handleSubmit(submit)}>
+              <Input
+                sx={inputStyle}
+                disableUnderline
+                type="email"
+                placeholder="Email"
+                {...register("email", { required: true })}
               />
-              <MainInput
+              <Input
+                sx={inputStyle}
+                disableUnderline
                 placeholder="Name and Surname"
-                {...register("login", { required: true })}
+                {...register("fullName", { required: true })}
               />
-              <MainInput
+              <Input
+                sx={inputStyle}
+                disableUnderline
                 placeholder="User Name"
                 {...register("username", { required: true })}
               />
-              <MainInput
+              <Input
+                sx={inputStyle}
+                disableUnderline
                 placeholder="Password"
                 {...register("password", { required: true })}
               />
-              <ButtonPrimary type={"submit"}>Sign Up</ButtonPrimary>
+              <ButtonPrimary type="submit">Sign Up</ButtonPrimary>
             </form>
           </Box>
           <Box>

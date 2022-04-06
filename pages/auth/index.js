@@ -7,12 +7,12 @@ import MainInput from "../../components/miniComp/MainInput";
 import MyDivider from "../../components/miniComp/MyDivider";
 import ButtonPrimary from "../../components/miniComp/ButtonPrimary";
 import FacebookLink from "../../components/miniComp/FacebookLink";
+import { inputStyle } from "./signup";
 
 const SignIn = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
   const submit = (data) => {
@@ -39,17 +39,24 @@ const SignIn = () => {
             />
           </Box>
           <Box sx={{ width: "100%" }}>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleSubmit(submit);
-              }}
-            >
-              <MainInput
-                placeholder="Phone, Username, or Email"
+            <form onSubmit={handleSubmit(submit)}>
+              <Input
+                sx={inputStyle}
+                disableUnderline
+                placeholder="Email"
+                type="email"
                 {...register("login", { required: true })}
               />
-              <MainInput
+              <Input
+                sx={inputStyle}
+                disableUnderline
+                placeholder="Email"
+                type="file"
+                {...register("file", { required: true })}
+              />
+              <Input
+                sx={inputStyle}
+                disableUnderline
                 placeholder="Password"
                 {...register("password", { required: true })}
               />
@@ -81,7 +88,9 @@ const SignIn = () => {
           >
             You have not accaunt?
             <Link href={"/auth/signUp"}>
-              <span style={{ color: "#0779E9", cursor: 'pointer' }}>Sign Up</span>
+              <span style={{ color: "#0779E9", cursor: "pointer" }}>
+                Sign Up
+              </span>
             </Link>
           </Box>
         </Card>

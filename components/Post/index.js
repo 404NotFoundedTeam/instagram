@@ -1,12 +1,12 @@
 import { Box, Stack, Typography } from "@mui/material";
 import React from "react";
-import { BiMessageRounded, BiHeart } from "react-icons/bi";
-import { FiSend } from "react-icons/fi";
-import { FaRegBookmark } from "react-icons/fa";
+import PostActions from "./PostActions";
 
 const Post = ({ post }) => {
   return (
-    <Box sx={{ width: "100%", maxWidth: "991px", mx: "auto" }}>
+    <Box
+      sx={{ width: "100%", background: "#fff", maxWidth: "991px", mx: "auto" }}
+    >
       <Box
         sx={{
           display: "flex",
@@ -30,44 +30,8 @@ const Post = ({ post }) => {
             flexDirection: "column",
           }}
         >
-          <Box sx={{ width: "100%", flex: 1 }}> </Box>
-          <Box sx={{ width: "100%" }}>
-            <Stack
-              direction="row"
-              justifyContent="space-between"
-              alignItems="center"
-              sx={{
-                padding: "11px 10px",
-                fontSize: "24px",
-              }}
-            >
-              <Stack direction="row" alignItems="center" gap={2}>
-                <BiHeart />
-                <BiMessageRounded />
-                <FiSend />
-              </Stack>
-              <FaRegBookmark />
-            </Stack>
-
-            <Box
-              sx={{
-                padding: "11px 10px",
-              }}
-            >
-              <Stack
-                sx={{ marginBottom: "10px" }}
-                direction="row"
-                alignItems="center"
-                gap={1}
-              >
-                <img src="/images/oval.png" alt="" />
-                Liked by craig_love and 44,686 others
-              </Stack>
-              <Typography>
-                joshua_l The game in Japan was amazing and I want to share some
-                photos
-              </Typography>
-            </Box>
+          <Box sx={{ width: "100%", flex: 1 }}>
+            <PostActions />
           </Box>
         </Box>
       </Box>

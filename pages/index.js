@@ -3,23 +3,11 @@ import Stack from "@mui/material/Stack";
 import Header from "../components/header";
 import RoundImg from "../components/RoundImg";
 import CustomSwiper from "../components/Swiper";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { BsChat, BsChatTextFill } from "react-icons/bs";
-import { RiSendPlaneLine, RiSendPlaneFill } from "react-icons/ri";
-import Image from "next/image";
-import { FaRegBookmark } from "react-icons/fa";
+import MainPost from "../components/Post/MainPost";
 
 export default function Home() {
   const stories = [
     <RoundImg live={true} />,
-    <RoundImg />,
-    <RoundImg />,
-    <RoundImg />,
-    <RoundImg />,
-    <RoundImg />,
-    <RoundImg />,
-    <RoundImg />,
     <RoundImg />,
     <RoundImg />,
     <RoundImg />,
@@ -46,73 +34,9 @@ export default function Home() {
           >
             <CustomSwiper items={stories} count={10} />
           </Card>
-          <Card
-            sx={{
-              marginTop: { xs: 0, md: "20px" },
-              boxShadow: "0px 0px 0 1px rgba(17, 17, 26, 0.1)",
-              borderRadius: { xs: 0, md: "5px" },
-            }}
-            elevation={0}
-          >
-            <Stack
-              direction="row"
-              justifyContent="space-between"
-              alignItems="center"
-              sx={{ padding: "11px 10px" }}
-            >
-              <Stack direction="row" alignItems="center" gap={1}>
-                <RoundImg size={40} isBorder={false} />
-                <Box>
-                  <Typography fontSize={13} fontWeight="bold">
-                    Jon
-                  </Typography>
-                  <Typography fontSize={11}>Tokyo, Japan</Typography>
-                </Box>
-              </Stack>
-              <MoreHorizIcon />
-            </Stack>
-            <img
-              src="https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dmlld3xlbnwwfHwwfHw%3D&w=1000&q=80"
-              alt=""
-              style={{ width: "100%", height: "375px", objectFit: "cover" }}
-            />
-            <Stack
-              direction="row"
-              justifyContent="space-between"
-              alignItems="center"
-              sx={{
-                padding: "11px 10px",
-                fontSize: "24px",
-              }}
-            >
-              <Stack direction="row" alignItems="center" gap={2}>
-                <AiOutlineHeart />
-                <BsChat />
-                <RiSendPlaneLine />
-              </Stack>
-              <FaRegBookmark />
-            </Stack>
-
-            <Box
-              sx={{
-                padding: "11px 10px",
-              }}
-            >
-              <Stack
-                sx={{ marginBottom: "10px" }}
-                direction="row"
-                alignItems="center"
-                gap={1}
-              >
-                <img src="/images/oval.png" alt="" />
-                Liked by craig_love and 44,686 others
-              </Stack>
-              <Typography>
-                joshua_l The game in Japan was amazing and I want to share some
-                photos
-              </Typography>
-            </Box>
-          </Card>
+          <MainPost />
+          <MainPost />
+          <MainPost />
         </Grid>
         <Grid
           item

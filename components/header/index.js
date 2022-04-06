@@ -1,8 +1,20 @@
-import { Box, Grid, InputAdornment, Stack, TextField } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Divider,
+  Grid,
+  InputAdornment,
+  Menu,
+  MenuItem,
+  Stack,
+  TextField,
+} from "@mui/material";
 import { AiFillHome, AiOutlineHome } from "react-icons/ai";
 import { RiMessengerFill, RiMessengerLine } from "react-icons/ri";
 import { HiPlusCircle, HiOutlinePlusCircle } from "react-icons/hi";
 import { AiFillCompass, AiOutlineCompass } from "react-icons/ai";
+import { IoSettingsOutline } from "react-icons/io";
+import { BiUserCircle } from "react-icons/bi";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import Image from "next/image";
 import SearchIcon from "@mui/icons-material/Search";
@@ -43,6 +55,14 @@ export default function Header() {
       padding: "12px",
       margin: "0 auto",
     },
+    menulist: {
+      pr: "30px",
+      fontSize: "14px",
+      "& svg": { fontSize: "14px" },
+      display: "flex",
+      gap: "5px",
+      alignItems: "center",
+    },
     searchBox: {
       padding: "0 2px",
       width: "220px",
@@ -68,6 +88,15 @@ export default function Header() {
       fontSize: { xs: "22px", sm: "26px" },
       "& a": { display: "flex", alignItems: "center" },
     },
+  };
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   return (
@@ -140,15 +169,60 @@ export default function Header() {
             ))}
             <Box
               sx={{
+                cursor: "pointer",
                 display: {
                   xs: "none",
                   sm: "block",
                 },
               }}
             >
-              <a>
-                <img src="images/oval.png" alt="account" />
-              </a>
+              <Box
+                id="basic-button"
+                aria-controls={open ? "basic-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? "true" : undefined}
+                onClick={handleClick}
+              >
+                <Avatar
+                  sx={{ width: "26px", height: "26px" }}
+                  src={"/images/oval.png"}
+                  alt={"User Profile"}
+                />
+              </Box>
+              <Menu
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+              >
+                <MenuItem
+                  sx={styles?.menulist}
+                  onClick={() => {
+                    router.push("/profile");
+                    handleClose();
+                  }}
+                >
+                  Profile
+                </MenuItem>
+                <MenuItem
+                  sx={styles?.menulist}
+                  onClick={() => {
+                    router.push("/profile/settings");
+                    handleClose();
+                  }}
+                >
+                  Setting
+                </MenuItem>
+                <Divider />
+                <MenuItem
+                  sx={styles?.menulist}
+                  onClick={() => {
+                    handleClose();
+                  }}
+                >
+                  Log Out
+                </MenuItem>
+              </Menu>
             </Box>
           </Stack>
         </Grid>
