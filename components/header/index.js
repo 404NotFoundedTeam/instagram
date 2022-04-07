@@ -3,11 +3,10 @@ import {
   Box,
   Divider,
   Grid,
-  InputAdornment,
+  IconButton,
   Menu,
   MenuItem,
   Stack,
-  TextField,
 } from "@mui/material";
 import { AiFillHome, AiOutlineHome } from "react-icons/ai";
 import { RiMessengerFill, RiMessengerLine } from "react-icons/ri";
@@ -21,6 +20,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 export default function Header() {
   const router = useRouter();
@@ -49,6 +49,7 @@ export default function Header() {
       arr[i][0] = <AiFillHeart />;
     }
   });
+  const mode = useSelector((state) => state.main.mode);
   const styles = {
     header: {
       maxWidth: "991px",
@@ -67,9 +68,9 @@ export default function Header() {
       padding: "0 2px",
       width: "220px",
       borderRadius: "5px",
-      border: "none",
+      border: (theme) => theme.customBorders.input,
       outline: "none",
-      backgroundColor: "#efefef",
+      backgroundColor: "background.default",
       margin: "0 auto",
     },
     logoCover: { "& a": { display: "flex", alignItems: "center" } },
@@ -77,6 +78,7 @@ export default function Header() {
       background: "transparent",
       border: "none",
       width: "100%",
+      color: mode == "dark" ? "#fff" : "rgba(18, 18, 18, 1)",
       outline: "none",
       padding: "8px 8px",
     },
@@ -119,8 +121,10 @@ export default function Header() {
           <Link href="/">
             <a>
               <img
-                style={{ maxWidth: "100%", minWidth: "100px" }}
-                src="/images/logo.png"
+                style={{ width: "150px", minWidth: "100px" }}
+                src={
+                  mode == "dark" ? "/images/logo_grad.png" : "/images/logo.png"
+                }
                 alt="logo"
               />
             </a>
@@ -163,7 +167,15 @@ export default function Header() {
                 }}
               >
                 <Link href={href}>
-                  <a>{icon}</a>
+                  <a>
+                    <IconButton
+                      disableRipple
+                      size={"large"}
+                      sx={{ padding: "4px" }}
+                    >
+                      {icon}
+                    </IconButton>
+                  </a>
                 </Link>
               </Box>
             ))}

@@ -1,8 +1,9 @@
-import { Box, Divider, Paper, Typography } from "@mui/material";
+import { Box, Button, Divider, Paper, Typography } from "@mui/material";
 import { useRouter } from "next/router";
-import React, { useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import ButtonPrimary from "../components/miniComp/ButtonPrimary";
 import MyModal from "../components/modal";
+import Cropper from "react-easy-crop";
 
 export default function CreatePost() {
   const [open, setOpen] = React.useState(true);
@@ -10,31 +11,30 @@ export default function CreatePost() {
   const fileInput = useRef(null);
   const router = useRouter();
 
-  const getFiles = () => {
-    const files = fileInput?.current?.files;
-    const reader = new FileReader();
-    reader.addEventListener("load", () => {
-      setPostFile(reader.result);
-    });
-    reader.readAsDataURL(files[0]);
-    console.log(files);
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+    console.log(croppedArea, croppedAreaPixels);
+  }, []);
+
+  const onUploadFile = (event) => {
+    if (event.target.files && event.target.files.length > 0) {
+      const reader = new FileReader();
+
+      reader.addEventListener("load", () => {
+        const image = reader.result;
+
+        setPostFile(image);
+      });
+
+      reader.readAsDataURL(event.target.files[0]);
+    }
   };
 
   const closeModal = () => {
     router.back();
     setOpen(false);
   };
-
-  // image_input.addEventListener("change", function () {
-  //   const reader = new FileReader();
-  //   reader.addEventListener("load", () => {
-  //     uploaded_image = reader.result;
-  //     document.querySelector(
-  //       "#display_image"
-  //     ).style.backgroundImage = `url(${uploaded_image})`;
-  //   });
-  //   reader.readAsDataURL(this.files[0]);
-  // });
 
   const openFile = () => {
     fileInput.current.click();
@@ -47,7 +47,6 @@ export default function CreatePost() {
           sx={{
             width: "500px",
             borderRadius: 2,
-            backgroundColor: "#fff",
             borderRadius: 2,
             overflow: "hidden",
             elevation: 2,
@@ -69,7 +68,7 @@ export default function CreatePost() {
             </Typography>
             <Divider />
             <input
-              onChange={getFiles}
+              onChange={(e) => onUploadFile(e)}
               style={{ display: "none" }}
               type={"file"}
               ref={fileInput}
@@ -84,15 +83,36 @@ export default function CreatePost() {
             }}
           >
             {postFile ? (
-              <Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "end",
+                  position: 'relative'
+                }}
+              >
+                <Cropper
+                  image={postFile}
+                  crop={crop}
+                  zoom={zoom}
+                  aspect={4 / 4}
+                  style={{ width: "100%", height: "100%", maxWidth: '400px', maxHeight: '400px'}}
+                  onCropChange={setCrop}
+                  onCropComplete={onCropComplete}
+                  onZoomChange={setZoom}
+                />
                 <img
                   src={postFile}
                   style={{
-                    width: "200px",
-                    height: "200px",
+                    width: "100%",
+                    maxWidth: "400px",
+                    maxHeight: "400px",
+                    // opacity:
+                    height: "100%",
                     objectFit: "cover",
                   }}
                 />
+                <ButtonPrimary onClick={() => {}}>Next</ButtonPrimary>
               </Box>
             ) : (
               <Box sx={{ textAlign: "center" }}>

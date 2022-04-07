@@ -8,6 +8,8 @@ import MyDivider from "../../components/miniComp/MyDivider";
 import ButtonPrimary from "../../components/miniComp/ButtonPrimary";
 import FacebookLink from "../../components/miniComp/FacebookLink";
 import { inputStyle } from "./signup";
+import { signInAction } from "../../redux/actions/auth";
+import { signInAxios } from "../../api";
 
 const SignIn = () => {
   const {
@@ -17,6 +19,7 @@ const SignIn = () => {
   } = useForm();
   const submit = (data) => {
     console.log(data);
+    signInAxios(data);
   };
 
   return (
@@ -43,16 +46,9 @@ const SignIn = () => {
               <Input
                 sx={inputStyle}
                 disableUnderline
-                placeholder="Email"
-                type="email"
-                {...register("login", { required: true })}
-              />
-              <Input
-                sx={inputStyle}
-                disableUnderline
-                placeholder="Email"
-                type="file"
-                {...register("file", { required: true })}
+                placeholder="Username"
+                type="text"
+                {...register("userName", { required: true })}
               />
               <Input
                 sx={inputStyle}

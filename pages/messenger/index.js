@@ -45,7 +45,6 @@ const Chat = () => {
               xs: openChat ? "translateX(-100%)" : "translateX(0)",
               sm: "translateX(0)",
             },
-            background: "#fff",
             display: "flex",
             flexDirection: "column",
             zIndex: 3,
@@ -159,10 +158,12 @@ const Chat = () => {
                     borderRadius: "20px",
                     padding: "6px 15px",
                     display: "flex",
+                    background: "#fff",
                     gap: "10px",
                     alignItems: "center",
                     "& svg": {
                       fontSize: "24px",
+                      color: "rgba(18, 18, 18, 1) !important",
                       cursor: "pointer",
                     },
                   }}
@@ -212,7 +213,7 @@ const Chat = () => {
           >
             <img
               style={{ width: "100px", height: "100px", marginBottom: "20px" }}
-              src="http://cdn.onlinewebfonts.com/svg/img_550762.png"
+              src="/images/send.png"
             />
             <Typography sx={{ fontSize: "32px", fontWeight: "300" }}>
               Your Messages

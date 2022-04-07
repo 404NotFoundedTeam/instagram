@@ -6,6 +6,7 @@ import { HiPlusCircle, HiOutlinePlusCircle } from "react-icons/hi";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { RiSearchLine, RiSearchFill } from "react-icons/ri";
 import { useRouter } from "next/router";
+import { Avatar } from "@mui/material";
 
 export default function BottomNav({ sx }) {
   const [value, setValue] = React.useState("/");
@@ -73,8 +74,14 @@ export default function BottomNav({ sx }) {
       <BottomNavigationAction
         disableRipple
         // label={text}
-        value={"/account"}
-        icon={<img src="images/oval.png" alt="account" />}
+        value={"/profile"}
+        icon={
+          <Avatar
+            sx={{ width: "30px", height: "30px" }}
+            src="images/oval.png"
+            alt="account"
+          />
+        }
         sx={{
           minWidth: "unset",
           color: (theme) => theme.palette.text.primary,

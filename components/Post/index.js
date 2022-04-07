@@ -1,13 +1,11 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Paper, Stack, Typography } from "@mui/material";
 import React from "react";
 import PostActions from "./PostActions";
 
 const Post = ({ post }) => {
   return (
-    <Box
-      sx={{ width: "100%", background: "#fff", maxWidth: "991px", mx: "auto" }}
-    >
-      <Box
+    <Box sx={{ width: "100%", maxWidth: "991px", mx: "auto" }}>
+      <Paper
         sx={{
           display: "flex",
           width: "100%",
@@ -30,11 +28,12 @@ const Post = ({ post }) => {
             flexDirection: "column",
           }}
         >
-          <Box sx={{ width: "100%", flex: 1 }}>
+          <Box sx={{ width: "100%", flex: 1 }}></Box>
+          <Box>
             <PostActions />
           </Box>
         </Box>
-      </Box>
+      </Paper>
     </Box>
   );
 };

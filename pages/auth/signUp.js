@@ -82,7 +82,7 @@ const SignUp = () => {
                 sx={inputStyle}
                 disableUnderline
                 placeholder="User Name"
-                {...register("username", { required: true })}
+                {...register("userName", { required: true })}
               />
               <Input
                 sx={inputStyle}

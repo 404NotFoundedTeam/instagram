@@ -8,7 +8,10 @@ const Card = ({ children, sx, elevation }) => {
       sx={{
         width: "100%",
         padding: { md: 3, sm: 2, xs: 0 },
-        bgcolor: { sm: "white", xs: "transparent" },
+        bgcolor: (theme) => ({
+          sm: theme.palette.background.paper,
+          xs: "transparent",
+        }),
         boxShadow: (theme) => ({ sm: theme.customShadows.card, xs: "none" }),
         ...sx,
       }}

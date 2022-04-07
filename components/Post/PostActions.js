@@ -4,8 +4,9 @@ import React from "react";
 import { BiMessageRounded, BiHeart } from "react-icons/bi";
 import { FiSend } from "react-icons/fi";
 import { FaRegBookmark } from "react-icons/fa";
+import { AiFillHeart } from "react-icons/ai";
 
-const PostActions = () => {
+const PostActions = ({ isLiked }) => {
   return (
     <Box sx={{ width: "100%" }}>
       <Stack
@@ -18,8 +19,12 @@ const PostActions = () => {
           "& svg": { cursor: "pointer", "&:hover": { color: "#909090" } },
         }}
       >
-        <Stack direction="row" alignItems="center" gap={2}>
-          <BiHeart />
+        <Stack
+          direction="row"
+          alignItems="center"
+          gap={2}
+        >
+          {isLiked ? <AiFillHeart /> : <BiHeart />}
           <BiMessageRounded />
           <FiSend />
         </Stack>
